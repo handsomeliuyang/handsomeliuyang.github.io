@@ -30,7 +30,7 @@ rss: /atom.xml ## RSS address.
 imglogo:
   enable: true             ## display image logo true/false.
   src: img/logo.png        ## `.svg` and `.png` are recommended,please put image into the theme folder `/jacman/source/img`.
-favicon: img/favicon.png   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.
+favicon: img/favicon.ico   ## size:32px*32px,`.ico` is recommended,please put image into the theme folder `/jacman/source/img`.
 apple_icon: img/jacman.png ## size:114px*114px,please put image into the theme folder `/jacman/source/img`.
 author_img: img/author.png ## size:220px*220px.display author avatar picture.if don't want to display,please don't set this.
 banner_img: #img/banner.jpg ## size:1920px*200px+. Banner Picture
@@ -85,6 +85,8 @@ links:
   曲彦桥's Blog: http://123.57.236.114:3000/
   徐萌阳's Blog: http://blog.csdn.net/guxiao1201
   李晓梅's Blog: http://blog.csdn.net/lihappyangel
+  毛磊's Blog: http://xdmaolei.github.io/
+  王永川's Blog: http://blog.csdn.net/u010032372
 
 #### Comment
 duoshuo_shortname: "handsomeliuyang"   ## e.g. wuchong   your duoshuo short name.
