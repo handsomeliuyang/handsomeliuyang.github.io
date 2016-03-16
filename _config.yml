@@ -72,5 +72,8 @@ stylus:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:handsomeliuyang/handsomeliuyang.github.io.git
-  branch: master
+  repository: git@git.coding.net:handsomeliuyang/handsomeliuyang.git
+  branch: coding-pages
+
+  #repository: git@github.com:handsomeliuyang/handsomeliuyang.github.io.git
+  #branch: master
