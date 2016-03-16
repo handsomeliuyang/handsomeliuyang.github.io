@@ -84,6 +84,7 @@ links:
   赵岘's Blog: http://www.cnblogs.com/puff
   曲彦桥's Blog: http://123.57.236.114:3000/
   徐萌阳's Blog: http://blog.csdn.net/guxiao1201
+  李晓梅's Blog: http://blog.csdn.net/lihappyangel
 
 #### Comment
 duoshuo_shortname: "handsomeliuyang"   ## e.g. wuchong   your duoshuo short name.
@@ -103,8 +104,8 @@ google_analytics:
 ## You MUST upgrade to Universal Analytics first!
 ## https://developers.google.com/analytics/devguides/collection/upgrade/?hl=zh_CN
 baidu_tongji:
-  enable: false
-  sitecode: e6d1f421bbc9962127a50488f9ed37d1 ## e.g. e6d1f421bbc9962127a50488f9ed37d1 your baidu tongji site code
+  enable: true
+  sitecode: db3a9fd8a5f4c76228cbeb8fec441bf2 ## your baidu tongji site code
 cnzz_tongji:
   enable: false
   siteid:    ## e.g. 1253575964 your cnzz tongji site id
