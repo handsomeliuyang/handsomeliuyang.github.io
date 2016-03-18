@@ -21,6 +21,7 @@ tags:
     hexo g  // hexo generator的缩写，生成静态web网页，生成的目录是：public
     hexo s  // hexo server的缩写，生成本地web服务器，可以访问，查看效果
     ```
+    
 3. 开发环境
     1. 下载webstorm
     2. 给webstorm安装markdown插件
@@ -48,6 +49,11 @@ tags:
     stylus:
       compress: true // 对样式文件进行压缩
     ```
+    4. 按官网教程安装Hexo后，执行hexo d命令会报错，是由于缺少Module库，执行下面的命令：
+    ```shell
+    npm install hexo-deployer-git --save
+    ```
+    安装之后，就可以执行hexo d进行部署了  
 6. 写博客
     1. 使用如下命令创建新的文章：
     ```shell
