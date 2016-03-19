@@ -99,3 +99,32 @@ hexo new page "about" // 这样创建md文件，才能使用/about来引用到
 4. 添加站内搜索
 5. 添加评价，推荐使用**多说**
 6. 添加百度搜索、google搜索
+7. 添加sitemap.xml，供搜索引擎的爬虫使用
+
+# hexo发布新文章
+
+方法一：
+
+1. 创建文章，命令如下：
+```shell
+hexo new "文章名称"
+```
+2. 在source/_posts目录下，就会创建此文章，编译完成后，部署，命令如下：
+```shell
+hexo clean
+hexo d -g // 相当于先执行hexo g 再执行hexo d
+```
+
+方法二：
+
+1. 新创建草稿，命令如下：
+```shell
+hexo new draft "文章名称"
+```
+2. 在source/_drafts目录下，会创建相应的文章，编写文章，草稿文章默认情况下，不会被部署到站点里
+3. 把草稿发布为文章，命令如下：
+```shell
+hexo publish "草稿文章名称"
+```
+
+
