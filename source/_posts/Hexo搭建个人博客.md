@@ -127,4 +127,10 @@ hexo new draft "文章名称"
 hexo publish "草稿文章名称"
 ```
 
+# F&Q
+
+## 图片支持
+
+https://codefalling.com/2015/12/19/no-pains-with-hexo-local-image/
+
 

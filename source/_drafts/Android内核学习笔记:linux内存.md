@@ -44,3 +44,5 @@ mov reg1, 1000  // 将物理地址1000中的值赋值给寄存器
 
 1. [浅谈操作系统对内存的管理](http://www.cnblogs.com/CareySon/archive/2012/04/25/2470063.html)
 
+![](Android内核学习笔记:linux内存/test.png)
+
