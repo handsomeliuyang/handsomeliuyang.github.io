@@ -40,7 +40,7 @@ theme_color:
 
 # 代码高亮主题
 # available: default | night
-highlight_theme: night
+highlight_theme: default
 
 #### index post is expanding or not 
 index:
