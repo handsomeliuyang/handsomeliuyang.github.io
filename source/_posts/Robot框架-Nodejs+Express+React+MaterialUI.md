@@ -23,43 +23,43 @@ tags: [Robot, React]
 	```javascript
 	// html引用css部分
 	<link href="../../other_js_lib/charisma/css/charisma-app.css" rel="stylesheet">
-    <link href='../../other_js_lib/charisma/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
-    <link href='../../other_js_lib/charisma/bower_components/chosen/chosen.min.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/jquery.noty.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/noty_theme_default.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/elfinder.min.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/elfinder.theme.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/uploadify.css' rel='stylesheet'>
-    <link href='../../other_js_lib/charisma/css/animate.min.css' rel='stylesheet'>
-    
-    // html中大量引用js的部分
-    <!-- select or dropdown enhancer -->
-    <script src="../../other_js_lib/charisma/bower_components/chosen/chosen.jquery.min.js"></script>
-    <!-- plugin for gallery image view -->
-    <script src="../../other_js_lib/charisma/bower_components/colorbox/jquery.colorbox-min.js"></script>
-    <!-- notification plugin -->
-    <script src="../../other_js_lib/charisma/js/jquery.noty.js"></script>
-    <!-- library for making tables responsive -->
-    <script src="../../other_js_lib/charisma/bower_components/responsive-tables/responsive-tables.js"></script>
-    <!-- tour plugin -->
-    <script src="../../other_js_lib/charisma/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
-    <!-- star rating plugin -->
-    <script src="../../other_js_lib/charisma/js/jquery.raty.min.js"></script>
-    <!-- for iOS style toggle switch -->
-    <script src="../../other_js_lib/charisma/js/jquery.iphone.toggle.js"></script>
-    <!-- autogrowing textarea plugin -->
-    <script src="../../other_js_lib/charisma/js/jquery.autogrow-textarea.js"></script>
-    <!-- multiple file upload plugin -->
-    <script src="../../other_js_lib/charisma/js/jquery.uploadify-3.1.min.js"></script>
-    <!-- history.js for cross-browser state change on ajax -->
-    <script src="../../other_js_lib/charisma/js/jquery.history.js"></script>
-    <!-- application script for Charisma demo -->
-    <script src="../../other_js_lib/charisma/js/charisma.js"></script>
+	<link href='../../other_js_lib/charisma/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+	<link href='../../other_js_lib/charisma/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/jquery.noty.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/noty_theme_default.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/elfinder.min.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/elfinder.theme.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/jquery.iphone.toggle.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/uploadify.css' rel='stylesheet'>
+	<link href='../../other_js_lib/charisma/css/animate.min.css' rel='stylesheet'>
+	
+	// html中大量引用js的部分
+	<!-- select or dropdown enhancer -->
+	<script src="../../other_js_lib/charisma/bower_components/chosen/chosen.jquery.min.js"></script>
+	<!-- plugin for gallery image view -->
+	<script src="../../other_js_lib/charisma/bower_components/colorbox/jquery.colorbox-min.js"></script>
+	<!-- notification plugin -->
+	<script src="../../other_js_lib/charisma/js/jquery.noty.js"></script>
+	<!-- library for making tables responsive -->
+	<script src="../../other_js_lib/charisma/bower_components/responsive-tables/responsive-tables.js"></script>
+	<!-- tour plugin -->
+	<script src="../../other_js_lib/charisma/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+	<!-- star rating plugin -->
+	<script src="../../other_js_lib/charisma/js/jquery.raty.min.js"></script>
+	<!-- for iOS style toggle switch -->
+	<script src="../../other_js_lib/charisma/js/jquery.iphone.toggle.js"></script>
+	<!-- autogrowing textarea plugin -->
+	<script src="../../other_js_lib/charisma/js/jquery.autogrow-textarea.js"></script>
+	<!-- multiple file upload plugin -->
+	<script src="../../other_js_lib/charisma/js/jquery.uploadify-3.1.min.js"></script>
+	<!-- history.js for cross-browser state change on ajax -->
+	<script src="../../other_js_lib/charisma/js/jquery.history.js"></script>
+	<!-- application script for Charisma demo -->
+	<script src="../../other_js_lib/charisma/js/charisma.js"></script>
 	```
 2. html过多，每个一个界面就会有一个html页面  
 	![](robot1html数量.png)
@@ -70,7 +70,8 @@ tags: [Robot, React]
 6. 没有适配移动端，在手机版本上的体验很差
 7. 还有很多其他的，都是由上面的问题衍生出来的
 
-#调研
+# 调研
+
 为了解决上面的问题，花了几天时间进行调研，主要的调研点：
 
 1. browserify是否可以对css进行模块化支持？  
@@ -117,7 +118,7 @@ tags: [Robot, React]
 2. 关键点：
 	1. server端的日志输出，把所有请求都通过日志输出
 		
-		```js
+		```javascript
 		// 通过使用给express里添加morgan，就可以实现
 		var logger = require('morgan');
 		var app = express();
@@ -286,21 +287,18 @@ tags: [Robot, React]
 	
 	// 命令行里运行
 	npm run browser:development
-	```	
+	```
 5. 通过这种方式启动的webpack-dev-server后，通过ctrl-z能停掉服务，但无法释放所占用的8080端口号，需求如下操作，kill掉此端口的占用，才能再次启动。
 	
 	```
 	// 查找端口被哪些服务占用
 	lsof -i:8080
-	
 	// kill掉此进程
 	kill -9 进程pid
 	```
-6. npm install --save与--save-dev的区别
-	TODO-ly 
 
-	
 ### 前端框架
+
 #### 基于React的开发思路变化
 
 **传统开发模式：**
@@ -571,7 +569,6 @@ export default withWidth()(Master);
 3. [material-ui](http://www.material-ui.com/#/)
 4. [express](http://expressjs.com/en/4x/api.html#app.use)
 5. [Static Properties in ES Class](https://nighca.me/2015/12/29/Static-Properties-in-ES-Class/)
-6. 
 
 
 
