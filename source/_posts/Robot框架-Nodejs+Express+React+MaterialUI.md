@@ -2,7 +2,7 @@
 title: 前端学习系列：基于React的Robot框架的踩坑之旅
 date: 2016-12-30 13:00:00
 categories: 前端
-tags: [Robot, React]
+tags: [Robot, React, nodejs]
 ---
 
 # 背景

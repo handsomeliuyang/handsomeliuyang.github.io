@@ -2,7 +2,7 @@
 title: React实现MergeRequest管理
 date: 2016-11-15 19:33:06
 categories: 前端
-tags: [React]
+tags: [React, Robot, nodejs]
 ---
 
 ## 什么是React
