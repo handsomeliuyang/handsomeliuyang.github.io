@@ -1,8 +1,8 @@
-.DS_Store
-Thumbs.db
-db.json
-*.log
-node_modules/
+# Project dependencies
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+.cache/
+# Build directory
 public/
-.deploy*/
-.idea
+.DS_Store
+yarn-error.log
