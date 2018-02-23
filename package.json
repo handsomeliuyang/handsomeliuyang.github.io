@@ -6,8 +6,13 @@
   "dependencies": {
     "gatsby": "^1.9.158",
     "gatsby-link": "^1.6.34",
-    "gatsby-plugin-react-helmet": "^2.0.3",
-    "react-helmet": "^5.2.0"
+    "gatsby-plugin-catch-links": "^1.0.15",
+    "gatsby-plugin-react-helmet": "^2.0.4",
+    "gatsby-source-filesystem": "^1.5.18",
+    "gatsby-transformer-remark": "^1.7.31",
+    "path": "^0.12.7",
+    "react-helmet": "^5.2.0",
+    "react-media": "^1.8.0"
   },
   "keywords": [
     "gatsby"
@@ -19,7 +24,7 @@
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && gh-pages -b master -d public"
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",

@@ -1,13 +1,22 @@
-# gatsby-starter-default
-The default Gatsby starter
+# 常用命令
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/)
-
-Install this starter (assuming Gatsby is installed) by running from your CLI:
 ```
-gatsby new gatsby-example-site
+// 创建新项目
+gatsby new xxx
+
+// 开发部署
+gatsby develop
+
+// 发布sqcd
+gatsby build
+
+// 测试运行发布
+gatsby serve
 ```
 
-## Deploy
+# Deploy Github
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+# 参考
+
+1. [deploy-gatsby](https://www.gatsbyjs.org/docs/deploy-gatsby/)
+2. [How to build a React and Gatsby-powered blog in about 10 minutes](https://medium.freecodecamp.org/how-to-build-a-react-and-gatsby-powered-blog-in-about-10-minutes-625c35c06481)
