@@ -20,3 +20,6 @@ gatsby serve
 
 1. [deploy-gatsby](https://www.gatsbyjs.org/docs/deploy-gatsby/)
 2. [How to build a React and Gatsby-powered blog in about 10 minutes](https://medium.freecodecamp.org/how-to-build-a-react-and-gatsby-powered-blog-in-about-10-minutes-625c35c06481)
+3. themes样例库：
+    1. [gatsby-starter-lumen](https://github.com/alxshelepenok/gatsby-starter-lumen)
+    2. [gatsby-material-starter](https://github.com/Vagr9K/gatsby-material-starter)
