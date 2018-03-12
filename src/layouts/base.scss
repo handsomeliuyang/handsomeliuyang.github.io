@@ -1,0 +1,12 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/mixins";
+
+a {
+    color: $typographic-link-p-font-color;
+    text-decoration: none;
+    &:hover,
+    &:focus,
+    &:active {
+        color: $typographic-link-s-font-color;
+    }
+}

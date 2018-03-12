@@ -1,5 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import Sidebar from '../components/Sidebar';
+import Post from '../components/Post';
+import "./style.scss";
 
 class IndexRoute extends React.Component {
     render(){
@@ -11,18 +14,15 @@ class IndexRoute extends React.Component {
                     <title>{title}</title>
                     <meta name="description" content={subtitle}/>
                 </Helmet>
-
+                <Sidebar {...this.props}/>
                 <div className="content">
                     <div className="content__inner">
                         {
                             posts
-                                // .filter(({node:post}) => post.frontmatter.title.length > 0)
+                                .filter(({node:post}) => post.frontmatter.title.length > 0)
                                 .map(({node:post})=>{
-                                    console.log('liuyang', post.frontmatter);
                                     return (
-                                        <div>
-                                            {post.frontmatter.title}
-                                        </div>
+                                        <Post data={post} key={post.fields.slug}/>
                                     );
                                 })
                         }
@@ -60,9 +60,15 @@ export const pageQuery = graphql`
         ){
             edges {
                 node {
+                    fields {
+                        slug
+                        categorySlug
+                    }
+                    excerpt
                     frontmatter {
                         title
                         date
+                        category
                     }
                 }
             }

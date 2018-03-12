@@ -1,0 +1,11 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/mixins";
+
+@import "./normalize";
+@import "./generic";
+@import "./highlight";
+@import "./base";
+
+.layout {
+    lost-center: $layout-width;
+}

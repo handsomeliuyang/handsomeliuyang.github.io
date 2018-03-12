@@ -1,0 +1,26 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/mixins";
+
+.content {
+    &__inner {
+        padding:25px 20px;
+    }
+}
+
+@include breakpoint-sm {
+    .content {
+        lost-column: 7/12;
+        &__inner {
+            padding: 30px 20px;
+        }
+    }
+}
+
+@include breakpoint-md {
+    .content {
+        lost-column: 2/3;
+        &__inner {
+            padding: 40px 35px;
+        }
+    }
+}

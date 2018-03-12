@@ -20,7 +20,7 @@ module.exports = {
             }
         ],
         author: {
-            name: 'LiuYang',
+            name: '刘阳',
             email: '40610243@qq.com',
             telegram: '18701318459',
             github: 'https://handsomeliuyang.github.io',
@@ -36,6 +36,29 @@ module.exports = {
                 name: 'pages'
             }
         },
-        'gatsby-transformer-remark',
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {
+                            // It's important to specify the maxWidth (in pixels) of
+                            // the content container as this plugin uses this as the
+                            // base for generating different widths of each image.
+                            maxWidth: 960,
+                        },
+                    },
+                    {
+                        resolve: 'gatsby-remark-responsive-iframe',
+                        options: { wrapperStyle: 'margin-bottom: 1.0725rem' }
+                    },
+                    'gatsby-remark-prismjs',
+                    'gatsby-remark-copy-linked-files',
+                ],
+            },
+        },
+        'gatsby-plugin-postcss-sass',
+        `gatsby-plugin-sharp`
     ],
 };
