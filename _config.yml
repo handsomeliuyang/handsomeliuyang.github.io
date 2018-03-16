@@ -6,14 +6,14 @@
 title: LiuYang's blog
 subtitle: 探索，分享，创新——追求卓越
 description: 探索，分享，创新——追求卓越
-author: LiuYang
+author: 刘阳
 email: 40610243@qq.com #你的联系邮箱
 language: zh-CN #中国人嘛，用中文
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://handsomeliuyang.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -74,7 +74,7 @@ baidusitemap:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: jacman
+theme: indigo #jacman
 stylus:
   compress: true
 
