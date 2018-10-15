@@ -14,13 +14,13 @@ tags: [Android, 开发模式]
 
 # 整体框架结构图
 
-![](/img_markdown/22.png)
+![](/58同城Hybrid框架的点点滴滴/22.png)
 
-![](/img_markdown/24.png)
+![](/58同城Hybrid框架的点点滴滴/24.png)
 
 # WebView加载流程
 
-![](/img_markdown/23.png)
+![](/58同城Hybrid框架的点点滴滴/23.png)
 
 1. 在Step1里有两个作用：
     1. 可以拦截html请求，对Html请求进行白名单的判断，只有规定域名的请求才能通过
@@ -59,7 +59,7 @@ jump://action/pagetype?url=xxx&title=xxx
 
 Native实现缓存的思路是：通过shouldInterceptRequest()拦截html的请求。
 
-![](/img_markdown/25.png)
+![](/58同城Hybrid框架的点点滴滴/25.png)
 
 # js,css,image拦截机制
 
@@ -381,7 +381,7 @@ public class ExtraDiskCache{
 使用的是json协议，其中的action区分事件类型
 
 具体的交互框架：
-![](/img_markdown/26.png)
+![](/58同城Hybrid框架的点点滴滴/26.png)
 
 1. 每一个Action协议会有对应的Bean, Parser, ActionCtrl。都是一一对应的
 2. ActionCtrl都在在具体的Fragment载体页进行注册，只有先注册过的Action，才会有相应的处理
