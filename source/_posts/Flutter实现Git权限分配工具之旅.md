@@ -631,7 +631,7 @@ Flutter是不同于ReactNative的跨端解决方案，是以一套代码实现�
 >
 > 简单翻译：Flutter不支持release下的hot update，不是由于技术原因，而是iOS系统只支持javaScript实现无线更新功能，由于Dart可以转换为Javasript代码，所以有一种可能性：程序的一部分使用javascript，而不是dart，再通过动态下载这部分javascript代码，实现hot update。
 
-Flutter是否会成为主流的跨端解决方案，主要原因不在于其高的开发效率与高性能，主要是看Fushsia操作系统的覆盖程序，如果Fushsia能成为主流的物联网与Android设备的主流系统，Flutter才能真正成为主流。
+Flutter是否会成为主流的跨端解决方案，主要原因不在于其高的开发效率与高性能，主要是看Fuchsia操作系统的覆盖程序，如果Fushsia能成为主流的物联网与Android设备的主流系统，Flutter才能真正成为主流。
 
 # 参考
 1. [Technical Overview](https://flutter.io/technical-overview/)
