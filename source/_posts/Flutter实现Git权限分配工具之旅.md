@@ -2,7 +2,7 @@
 title: Flutter实现Git权限分配工具之旅
 date: 2018-10-30 14:40:35
 categories: Android
-tags:[Flutter, Android]
+tags: [Flutter, Android]
 ---
 # Flutter初见
 > Flutter is a mobile app SDK for building high-performance, high-fidelity, apps for iOS and Android, from a single codebase. 
@@ -93,7 +93,8 @@ Flutter性能要高的原因：
 
 # Git权限分配工具简介
 为不同类型的角色批量分配Git权限的工具，整体效果如下：
-![](/Flutter实现Git权限分配工具之旅/flutter-igit.gif)
+
+<iframe height= 520 width= 100% src="/2018/10/30/Flutter实现Git权限分配工具之旅/flutter-igit.gif" frameborder=0 allowfullscreen></iframe>
 
 源码下载地址：https://github.com/handsomeliuyang/flutter-igit
 
