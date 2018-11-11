@@ -18,6 +18,8 @@ Flutter 是一款移动应用程序 SDK，致力于使用一套代码来构建�
     2. 实现定制，美观，品牌驱动的设计，而不受 OEM Widget 集的限制
 
 **框架结构（Architecture）**
+![](/Flutter实现Git权限分配工具之旅/old-architecture.png)
+
 ![](https://flutter.io/images/whatisflutter/diagram-layercake.svg)
 1. **[Skia](https://skia.org/)：**开源的2d图形库。其已作为Chrome, Chrome OS, Android, Firefox, Firefox OS等其他众多产品的图形引擎，支持平台还包括Windows,macOS,iOS8+,Ubuntu14.04+等。
 2. **Dart：**
