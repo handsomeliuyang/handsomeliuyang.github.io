@@ -488,27 +488,40 @@ Android的实现：
         }
     }
     ```
+4. 上面初始化ReactInstanceManager当中的常量，与React代码是一一对应的
+    1. "App1"：与在React里注册的组件名称是一样的
+        ```javascript
+        import { AppRegistry } from 'react-native';
+        import App from './App';
+        
+        AppRegistry.registerComponent('App1', () => App);
+        ```
+    2. .setJSMainModulePath("index")：JS bundle中主入口的文件名，是React工程里的入口文件index.js的名称
+    3. .setBundleAssetName("index.android.bundle")：这个是内置到assets目录下的bundle名称，与bundle生成命令有关
+        ```shell
+        react-native bundle --platform android --dev false --entry-file index.js --bundle-output /Users/ly/liuyang/workspace_flutter/wubarn_plugin/example/android/app/src/main/assets/index.android.bundle --assets-dest /Users/ly/liuyang/workspace_flutter/wubarn_plugin/example/android/app/src/main/res/
+        ```
 
-    ## 发布入口页
-    **实现效果**
+## 发布入口页
+**实现效果**
 
-    <iframe height= 520 width= 100% src="/2019/04/16/Flutter在58App上的深度调研/发布入口页.gif" frameborder=0 allowfullscreen></iframe>
+<iframe height= 520 width= 100% src="/2019/04/16/Flutter在58App上的深度调研/发布入口页.gif" frameborder=0 allowfullscreen></iframe>
 
-    ### 切换效果
+### 切换效果
 
-    实现思路：
-    1. 通过PageRoute，去掉切换的动画
-    2. 通过AnimatedBuilder，实现旋转动画
-    3. 通过WillPopScope Widget拦截返回事件
+实现思路：
+1. 通过PageRoute，去掉切换的动画
+2. 通过AnimatedBuilder，实现旋转动画
+3. 通过WillPopScope Widget拦截返回事件
 
-    Flutter的页面切换是由Navigator管理，其中有一个栈，栈帧是路由，通过PageRoute可以自定义切换的动画，如下去掉切换动画的代码：
-    ```dart
-    Navigator.push(context, PageRouteBuilder(
-        transitionDuration: Duration(), // 去掉了执行动画的时间
-        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
-            return PublishHome();
-        }
-    ));
+Flutter的页面切换是由Navigator管理，其中有一个栈，栈帧是路由，通过PageRoute可以自定义切换的动画，如下去掉切换动画的代码：
+```dart
+Navigator.push(context, PageRouteBuilder(
+    transitionDuration: Duration(), // 去掉了执行动画的时间
+    pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation){
+        return PublishHome();
+    }
+));
 ```
 
 由于Flutter是MVVM框架，Flutter里的Animation只负责计算，不负责界面布局与渲染，需要手动调用setState()来让界面重绘，不过可以通过AnimatedBuilder简化流程，但Flutter在实现组合动画比较麻烦。
@@ -904,5 +917,8 @@ Flutter框架在设计上，整体优于其他跨平台框架，实现使用时�
 
 持续关注跨平台框架的动态，ReactNative也在向Flutter学习，改进其性能差的一面，Flutter的基础库也在不断的完善中
 
-此demo的代码：// TODO-ly 代码上传到github上
+此demo的代码：[wuba_gallery](https://github.com/handsomeliuyang/wuba_gallery)
+
+# 参考
+1. [React Native 混合开发(Android篇)](http://www.devio.org/2018/08/26/React-Native-Hybrid-Android/)
 
