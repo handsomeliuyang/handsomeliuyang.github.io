@@ -1,8 +1,8 @@
 ---
 title: OpenGL学习笔记3：纹理
 date: 2019-08-17 11:56:19
-categories: 
-tags:
+categories: OpenGL
+tags: [OpenGL,C++]
 ---
 
 # 纹理
