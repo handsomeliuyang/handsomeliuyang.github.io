@@ -1,0 +1,342 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="801px" height="551px" viewBox="-0.5 -0.5 801 551" content="&lt;mxfile&gt;&lt;diagram id=&quot;HbOG8EX9hE7bfWvVgbvJ&quot; name=&quot;Page-1&quot;&gt;7VpZb9s4EP41BNKHBLosS4+SI7cFNptFjCLt04KxKFuoDq9MH9lfv0OKlKgjjrN1ajuJA8TkcEgNZzgzn4ZG5ijdfi7wYn6ThyRBhhZukXmNDEO3DAu+GOVRUGxjWFJmRRwKWk2YxP8SQdQEdRWHZNlgpHme0HjRJE7zLCNT2qDhosg3TbYoT5pPXeAZ6RAmU5x0qfdxSOcl1RloNf0LiWdz+WRdEyMplsyCsJzjMN8oJDNA5qjIc1q20u2IJEx7Ui/lvPETo5VgBcnoPhMMIQZ9lHsjIWxVdLM8gy9/TtMEejo0yTam35X2D2hrVwPRu2Ym1mTnUXYyWjx+VzvKLNatp/FePS/0mLFqQYAyjpNEjId4OSehEKa7caGLZb4qpmJvpjgruJgRwSWOItu1Mk0o6zPJUwIiAUNBEkzjdfMAYHGOZhVfrWpoCG33a17IssbJSiyKDDsBqfxFwyD2Pyt2GPwUhI4zZHowqi228J/vWivplzRflGOWMkbJll7iJJ6JeVNQDinqNaE1E9/8ybFCwCks6Cfd3le2RoRBp5LcnNJYEbQQt5/yUHQokvBHHJHp4zQht5uMCyoXeWhPAdqiTZsXTHMyWshN6k/v939pOiERVVTdXZvxwvmq9nLxqWSvCE8rormrlmeuSUFjCEJeadBrbnJfmPe6FMvPgStKuNNE3FX8KM+oCKG6IfpjnMYJ87MvJFkTtmrTzZ/0JiYD2e70FDF6qQ9dcHE+S8R5GR83dczUJW2uxMuh9uvuZXXdKxgi10dewBseciwUjJE/Yu3ARo6H/GsUOAgOjKfXtqqZgWeEHJ01XGi4jNnRkDMQ68AoMPs+cscosJDPRxlPgPwhCgbIGSPX5tNt5LuMwmaNO4Yu8lUW8sjGTt5mHlMyWWAexDaQUZumatmfGX2UJ3nBlzKjAfsTVlfo5QfoS1rkP4kyYvPP3uH1BQeicxwG3ePg9BwH+wDHYXCC0baKaeMCz1Km2B3x7rlYcXIRMK1c6I7M4iWzVzMKVuTz2M9eEf1tx2/d6gbwCsmqHusewGPtU/bYUZ4uAJJm1JsCKIzp44frnvB+3pvrSkx1DLcddtxWgVI2h0AaR0cBA2MVFmornHlmUy9NoCJeCFW0I0jSKMKXTb9tuzQOQ/aYXmDVhF6q/QYHCqum1rKO1oOKdUOGXtU+5gHs45xyWOVoeYg8j2FjAOoMmVvseADYPt93wY9wet7h1HCOGE+7ofF0CnSNN8R2rHyuevekYdSCnSz4qhU7XfD9/pKdlOakgucJ1ewelqRY7y7bnRMWtrTbrNpcsAY7XFTdK96/uv3z77tg8u0m+PSyDR5R3r+8b5P9xT3rwN3zCntpGj3B2+2FW84BwrcMVvvWIQH8uMgvC5IB8gaibOiZnRqjy3h8E3kOQ03ekPMAarL4gkMGsx2bUYCT8VisvOmP+ZDFKO+j6qibZusA6D14+7XKjrrxkTF2ZIy3kik4LMZhKDPghYqI67SoCbC8zuF8HD9fGLU1s4clf/slKQRvZRfN4T23dMQNAEgcrQoWLiYUU3JRCdhk44PvJOEZ+ye8Q7yv6N177V33nix1GcjzRQ5zDJ7DxvwKTd6uvZ/aUHXzKY3X96pp269TGdK7V6ZtRN8y3Ie92vYy3O6d5qvZ66TvNHcVt84/16fSM26wUNoYL+kER+QrqAc/JIQNNABVT/IcsWcLWdnxZPqtIHH9YDOKNI1ViduyyJXuYzpvp7RyPXs3aDtWmk5LaV+UmH+vgK0fInUl/RW73RP8845EBELP9FmbtQ6P+F3UnvY8IZdZdqBZr+lPDFDOcQYJplVVUdF9WVjZR+43hyz1HmRpScCiZruK8QXpDrr1r2D5mPJjYjP4Dw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 270.5 405 L 290.5 405" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <rect x="120.5" y="370" width="150" height="70" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 152px; height: 70px; padding-top: 370px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 150px; height: 70px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <i>
+                                        &lt;&lt;Interface&gt;&gt;
+                                    </i>
+                                    <br/>
+                                    <b>
+                                        LifecycleOwner
+                                    </b>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + getLifecycle(): Lifecycle
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="382" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    &lt;&lt;Interface&gt;&gt;...
+                </text>
+            </switch>
+        </g>
+        <rect x="290.5" y="375" width="180" height="60" fill="#f5f5f5" stroke="#666666" stroke-dasharray="3 3" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 178px; height: 1px; padding-top: 405px; margin-left: 293px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                目的：抽象Lifecycle的持有者，统一获取方式
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="293" y="409" fill="#333333" font-family="Helvetica" font-size="12px">
+                    目的：抽象Lifecycle的持有者，统一获取方式
+                </text>
+            </switch>
+        </g>
+        <rect x="120.5" y="460" width="220" height="90" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 222px; height: 90px; padding-top: 460px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 220px; height: 90px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <b>
+                                        Fragment
+                                    </b>
+                                    <br/>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mLifecycleRegistry: LifecycleRegistry
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + getLifecycle(): Lifecycle
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="472" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    Fragment...
+                </text>
+            </switch>
+        </g>
+        <rect x="350" y="460" width="220" height="90" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 222px; height: 90px; padding-top: 460px; margin-left: 350px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 220px; height: 90px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <b>
+                                        ComponentActivity
+                                    </b>
+                                    <br/>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mLifecycleRegistry: LifecycleRegistry
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + getLifecycle(): Lifecycle
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="350" y="472" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    ComponentActivity...
+                </text>
+            </switch>
+        </g>
+        <rect x="0" y="420" width="112.5" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 111px; height: 1px; padding-top: 435px; margin-left: 1px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Lifecycle提供方
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="56" y="440" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    Lifecycle提供方
+                </text>
+            </switch>
+        </g>
+        <rect x="580" y="460" width="220" height="90" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 222px; height: 90px; padding-top: 460px; margin-left: 580px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 220px; height: 90px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <b>
+                                        自定义
+                                    </b>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mLifecycleRegistry: LifecycleRegistry
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + getLifecycle(): Lifecycle
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="580" y="472" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    自定义+ mLifecycleRegistry: LifecycleRegist...
+                </text>
+            </switch>
+        </g>
+        <path d="M 413 40 L 433 40" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <rect x="120.5" y="0" width="292.5" height="80" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 295px; height: 80px; padding-top: 0px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 293px; height: 80px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <i>
+                                        &lt;&lt;Interface&gt;&gt;
+                                    </i>
+                                    <br/>
+                                    <b>
+                                        LifecycleObserver
+                                    </b>
+                                    <br/>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+                                    <br/>
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="12" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    &lt;&lt;Interface&gt;&gt;...
+                </text>
+            </switch>
+        </g>
+        <rect x="433" y="10" width="180" height="60" fill="#f5f5f5" stroke="#666666" stroke-dasharray="3 3" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 178px; height: 1px; padding-top: 40px; margin-left: 435px;">
+                        <div data-drawio-colors="color: #333333; " style="box-sizing: border-box; font-size: 0px; text-align: left;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(51, 51, 51); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                目的：空接口，给注解处理器使用
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="435" y="44" fill="#333333" font-family="Helvetica" font-size="12px">
+                    目的：空接口，给注解处理器使用
+                </text>
+            </switch>
+        </g>
+        <rect x="120.5" y="100" width="292.5" height="90" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 295px; height: 90px; padding-top: 100px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 293px; height: 90px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <i>
+                                        &lt;&lt;Interface&gt;&gt;
+                                    </i>
+                                    <br/>
+                                    <b>
+                                        Lifecycle
+                                    </b>
+                                    <br/>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + addObserver( LifecycleObserver ): void
+                                    <br/>
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + removeObserver( LifecycleObserver ): void
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + getCurrentState( ): State
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="112" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    &lt;&lt;Interface&gt;&gt;...
+                </text>
+            </switch>
+        </g>
+        <rect x="30" y="180" width="66" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 64px; height: 1px; padding-top: 195px; margin-left: 31px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Lifecycle
+                                <br/>
+                                被观察者
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="63" y="200" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    Lifecycle...
+                </text>
+            </switch>
+        </g>
+        <rect x="30" y="25" width="66" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 64px; height: 1px; padding-top: 40px; margin-left: 31px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 15px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                Observer
+                                <br/>
+                                观察者
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="63" y="45" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="15px" text-anchor="middle">
+                    Observer...
+                </text>
+            </switch>
+        </g>
+        <rect x="120.5" y="200" width="440" height="120" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 442px; height: 120px; padding-top: 200px; margin-left: 121px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: left; width: 440px; height: 120px; overflow: hidden;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; width: 100%; height: 100%; white-space: nowrap;">
+                                <p style="margin: 0px ; margin-top: 4px ; text-align: center">
+                                    <b>
+                                        LifecycleRegistry
+                                    </b>
+                                    <br/>
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mObserverMap: FastSafeIterableMap&lt;LifecycleObserver,
+                                    <font color="#ff0000">
+                                        ObserverWithState
+                                    </font>
+                                    &gt;
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mState: State
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + mLifecycleOwner:
+                                    <font color="#ff0000">
+                                        WeakReference
+                                    </font>
+                                    &lt;LifecycleOwner&gt;
+                                </p>
+                                <hr size="1"/>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + setCurrentState( State ): void
+                                </p>
+                                <p style="margin: 0px ; margin-left: 4px">
+                                    + handleLifecycleEvent( Lifecycle.Event ): void
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="121" y="212" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px">
+                    LifecycleRegistry...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
