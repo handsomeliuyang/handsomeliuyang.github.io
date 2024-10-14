@@ -6,7 +6,7 @@
   <link href="https://handsomeliuyang.github.io/atom.xml" rel="self"/>
   
   <link href="https://handsomeliuyang.github.io/"/>
-  <updated>2023-10-08T02:53:20.121Z</updated>
+  <updated>2024-10-14T03:54:12.867Z</updated>
   <id>https://handsomeliuyang.github.io/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>框架设计的重新思考与 HarmonyOS Next 实践</title>
+    <link href="https://handsomeliuyang.github.io/2024/10/12/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/"/>
+    <id>https://handsomeliuyang.github.io/2024/10/12/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/</id>
+    <published>2024-10-12T06:32:24.000Z</published>
+    <updated>2024-10-14T03:54:12.867Z</updated>
+    
+    <content type="html"><![CDATA[<p>在鸿蒙化过程中，我们不仅对框架设计进行了深刻反思，更通过实际应用规避了安卓系统中的历史包袱与遗留问题。高内聚、低耦合等设计原则虽然耳熟能详，但真正落地时依然充满挑战。因此，本文将聚焦实际问题，结合鸿蒙化的设计思考，带大家一探究竟。</p><h1 id="整体架构：组件化"><a href="#整体架构：组件化" class="headerlink" title="整体架构：组件化"></a>整体架构：组件化</h1><h2 id="第一版架构图：组件化设计"><a href="#第一版架构图：组件化设计" class="headerlink" title="第一版架构图：组件化设计"></a>第一版架构图：组件化设计</h2><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/%E7%BB%84%E4%BB%B6%E5%8C%96.drawio.svg"></p><p>架构特点及问题分析：</p><ol><li>基础组件接口暴露过多：<ol><li>问题1：配置接口与使用接口统一暴露，容易导致配置接口被多次调用，出现重复初始化问题。</li><li>问题2：暴露过多的接口，尤其第三方团队维护的组件（如分享库），实际业务中使用的接口寥寥无几，增加了单元测试的难度与成本。</li></ol></li><li>接口与实现高度耦合： <ol><li>问题1：以实现角度设计接口，增加接口的使用成本，开发者难以迅速上手。</li><li>问题2：接口变更成本过低，难以控制变更规则，导致迭代时单元测试无法复用，测试成本大幅上升。</li></ol></li></ol><p>解决方案：提取服务抽象层，严格区分业务接口与实现。</p><h2 id="第二架构图：组件化-服务抽象层"><a href="#第二架构图：组件化-服务抽象层" class="headerlink" title="第二架构图：组件化 + 服务抽象层"></a>第二架构图：组件化 + 服务抽象层</h2><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/%E7%BB%84%E4%BB%B6%E5%8C%96-%E6%9C%8D%E5%8A%A1%E6%8A%BD%E8%B1%A1%E5%B1%82.drawio.svg"></p><h3 id="服务设计规范："><a href="#服务设计规范：" class="headerlink" title="服务设计规范："></a>服务设计规范：</h3><h3 id="服务规范1：只暴露必要接口，屏蔽不必要的配置接口"><a href="#服务规范1：只暴露必要接口，屏蔽不必要的配置接口" class="headerlink" title="服务规范1：只暴露必要接口，屏蔽不必要的配置接口"></a>服务规范1：只暴露必要接口，屏蔽不必要的配置接口</h3><p>以网络组件库为例，我们将服务接口控制在业务需求范围内，避免暴露配置接口或未使用的接口：</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/network-api.jpg"></p><h3 id="服务规范2：聚合接口，提升业务使用便捷性"><a href="#服务规范2：聚合接口，提升业务使用便捷性" class="headerlink" title="服务规范2：聚合接口，提升业务使用便捷性"></a>服务规范2：聚合接口，提升业务使用便捷性</h3><p>为了简化业务调用，我们在接口层充当业务的BFF层，聚合接口。例如，使用Proxy实现依赖注入，确保接口调用与直接使用组件库保持一致，避免了依赖注解或容器管理带来的繁琐操作。</p><p>1、使用Proxy来实现依赖注入，而不采用注解或依赖管理容器来提供依赖入，保障与直接组件库的使用方式的一致，在Android中，我们使用的是依赖注入容器管理类，导致每次使用前，都需要先获取相应的服务才能使用</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/city-get-api.jpg"></p><p>2、对数据做聚合，减少Api的调用次数。例如，登录库中获取PPU、UserId、Ticket票据分别属于不同模块，但业务开发者不需要关注这些细节，接口层将这些细节屏蔽。</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/wblogin.jpg"></p><h3 id="服务规范3：异步化操作，解决性能瓶颈"><a href="#服务规范3：异步化操作，解决性能瓶颈" class="headerlink" title="服务规范3：异步化操作，解决性能瓶颈"></a>服务规范3：异步化操作，解决性能瓶颈</h3><p>对于耗时操作（如IO、网络请求等），我们采用Promise异步调用。在安卓中，像SharedPreferences、MMKV等库大多是同步方法，虽然简便，但在大规模应用中，容易出现卡顿现象。通过异步化，避免主线程阻塞。</p><p>ArtTS语言提供了Promise异步调用，以及await同步写法写异步调用过程，在鸿蒙化的服务中，涉及到IO等操作的Api都应返回Promise，用白屏或Loading来解决卡顿问题</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/login-await.jpg"></p><p>当不支持异步时，我们通过状态回调解决问题。例如，在Web设置Cookie时，为了应对异步返回，我们需在onLoadIntercept()方法中拦截URL加载，确保Cookie设置完成后再继续加载URL。</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/web-setcookie.png"></p><h3 id="服务规范4：Impl实现库的依赖模块延迟初始化，提升性能"><a href="#服务规范4：Impl实现库的依赖模块延迟初始化，提升性能" class="headerlink" title="服务规范4：Impl实现库的依赖模块延迟初始化，提升性能"></a>服务规范4：Impl实现库的依赖模块延迟初始化，提升性能</h3><p>为了减少冷启动时间，我们采用延时初始化策略，避免依赖模块在构造函数中初始化，确保逻辑不受始化顺序影响。</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/wmda-connect.png"></p><h3 id="服务规范5：测试覆盖率要求"><a href="#服务规范5：测试覆盖率要求" class="headerlink" title="服务规范5：测试覆盖率要求"></a>服务规范5：测试覆盖率要求</h3><p>服务库的单元测试必须覆盖100%的使用接口，由于不与具体实现库耦合，将会大幅提升测试Case使用率</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/service-api-test.png"></p><h3 id="服务规范6：抽象层变动需严格审核"><a href="#服务规范6：抽象层变动需严格审核" class="headerlink" title="服务规范6：抽象层变动需严格审核"></a>服务规范6：抽象层变动需严格审核</h3><p>由于服务抽象层的变动会影响到所有业务，必须经过严格审核。实现层的迭代则通过完善的测试用例来保障质量，降低线上风险。</p><h1 id="业务功能：模块化拆分"><a href="#业务功能：模块化拆分" class="headerlink" title="业务功能：模块化拆分"></a>业务功能：模块化拆分</h1><p>传统的业务模块划分以BG为单位，颗粒度较大，随着业务规模增大，模块变得臃肿。在鸿蒙化过程中，我们进一步细化拆分，按功能模块进行划分，带来了以下好处：</p><ol><li>便于分析包大小。</li><li>不同场景下实现按需加载或替换，尤其适合厂商定制需求。</li><li>满足元服务对包大小的要求，实现分包加载。</li></ol><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/feature-split.png"></p><h1 id="View（视图层）：MVVM架构"><a href="#View（视图层）：MVVM架构" class="headerlink" title="View（视图层）：MVVM架构"></a>View（视图层）：MVVM架构</h1><p>鸿蒙的双向数据绑定大大简化了View层与ViewModel层的通信。构建MVVM框架时，我们仅需关注以下关键点：</p><ol><li>ViewModel设计原则：按相关性创建ViewModel，确保相关属性聚合在同一ViewModel中，而非散落于View层。</li></ol><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/MVVM.jpg"></p><h1 id="Model（数据层）：单一数据源，简版Repository架构"><a href="#Model（数据层）：单一数据源，简版Repository架构" class="headerlink" title="Model（数据层）：单一数据源，简版Repository架构"></a>Model（数据层）：单一数据源，简版Repository架构</h1><p>我们采用单一数据源的设计来解耦数据层，以Model层为例，所有数据操作均通过单一接口调用，避免多源数据导致的复杂性。</p><p>以Model举例：</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/model.jpg"></p><p>在实现库中也是如此，如下图所示，简化了实现逻辑，确保各模块的独立性与可维护性。</p><p><img src="/../../hexo-img/2024-10-12-%E9%B8%BF%E8%92%99%E5%8C%96%E7%9A%84%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%80%83/wbloginimpl.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在鸿蒙化过程中，我们不仅对框架设计进行了深刻反思，更通过实际应用规避了安卓系统中的历史包袱与遗留问题。高内聚、低耦合等设计原则虽然耳熟能详，但真正落地时依然充满挑战。因此，本文将聚焦实际问题，结合鸿蒙化的设计思考，带大家一探究竟。&lt;/p&gt;
+&lt;h1 id=&quot;整体架构：组件化&quot;</summary>
+      
+    
+    
+    
+    <category term="经验总结" scheme="https://handsomeliuyang.github.io/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="HarmonyOS" scheme="https://handsomeliuyang.github.io/tags/HarmonyOS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android内核学习笔记：Android进程&#92;线程管理</title>
-    <link href="https://handsomeliuyang.github.io/2023/10/08/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Android%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AAndroid%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
-    <id>https://handsomeliuyang.github.io/2023/10/08/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Android%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AAndroid%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86/</id>
+    <link href="https://handsomeliuyang.github.io/2023/10/08/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Android%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AAndroid%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86/"/>
+    <id>https://handsomeliuyang.github.io/2023/10/08/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Android%E5%86%85%E6%A0%B8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9AAndroid%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86/</id>
     <published>2023-10-08T02:53:20.121Z</published>
     <updated>2023-10-08T02:53:20.121Z</updated>
     
@@ -42,8 +67,8 @@
   
   <entry>
     <title>ASM 学习心得</title>
-    <link href="https://handsomeliuyang.github.io/2023/08/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/ASM%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/"/>
-    <id>https://handsomeliuyang.github.io/2023/08/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/ASM%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</id>
+    <link href="https://handsomeliuyang.github.io/2023/08/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-ASM%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/"/>
+    <id>https://handsomeliuyang.github.io/2023/08/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-ASM%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/</id>
     <published>2023-08-08T12:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.128Z</updated>
     
@@ -70,8 +95,8 @@
   
   <entry>
     <title>App的Repo多仓库管理</title>
-    <link href="https://handsomeliuyang.github.io/2023/02/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/App%E7%9A%84Repo%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/"/>
-    <id>https://handsomeliuyang.github.io/2023/02/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/App%E7%9A%84Repo%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</id>
+    <link href="https://handsomeliuyang.github.io/2023/02/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-App%E7%9A%84Repo%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/"/>
+    <id>https://handsomeliuyang.github.io/2023/02/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-App%E7%9A%84Repo%E5%A4%9A%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86/</id>
     <published>2023-02-22T08:17:53.000Z</published>
     <updated>2023-10-08T02:53:20.128Z</updated>
     
@@ -96,8 +121,8 @@
   
   <entry>
     <title>从开发者角度思考单元测试的价值</title>
-    <link href="https://handsomeliuyang.github.io/2022/11/02/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%BB%8E%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%92%E5%BA%A6%E6%80%9D%E8%80%83%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E4%BB%B7%E5%80%BC/"/>
-    <id>https://handsomeliuyang.github.io/2022/11/02/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%BB%8E%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%92%E5%BA%A6%E6%80%9D%E8%80%83%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E4%BB%B7%E5%80%BC/</id>
+    <link href="https://handsomeliuyang.github.io/2022/11/02/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E4%BB%8E%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%92%E5%BA%A6%E6%80%9D%E8%80%83%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E4%BB%B7%E5%80%BC/"/>
+    <id>https://handsomeliuyang.github.io/2022/11/02/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E4%BB%8E%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%92%E5%BA%A6%E6%80%9D%E8%80%83%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E4%BB%B7%E5%80%BC/</id>
     <published>2022-11-02T07:13:00.000Z</published>
     <updated>2023-10-08T02:53:20.131Z</updated>
     
@@ -121,8 +146,8 @@
   
   <entry>
     <title>Dart的const理解</title>
-    <link href="https://handsomeliuyang.github.io/2022/05/28/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Dart%E7%9A%84const%E7%90%86%E8%A7%A3/"/>
-    <id>https://handsomeliuyang.github.io/2022/05/28/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Dart%E7%9A%84const%E7%90%86%E8%A7%A3/</id>
+    <link href="https://handsomeliuyang.github.io/2022/05/28/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Dart%E7%9A%84const%E7%90%86%E8%A7%A3/"/>
+    <id>https://handsomeliuyang.github.io/2022/05/28/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Dart%E7%9A%84const%E7%90%86%E8%A7%A3/</id>
     <published>2022-05-28T07:46:00.000Z</published>
     <updated>2023-10-08T02:53:20.122Z</updated>
     
@@ -148,8 +173,8 @@
   
   <entry>
     <title>Anki助手：解决孩子复习和家长辅导的痛点</title>
-    <link href="https://handsomeliuyang.github.io/2021/07/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/Anki%E5%8A%A9%E6%89%8B/"/>
-    <id>https://handsomeliuyang.github.io/2021/07/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/Anki%E5%8A%A9%E6%89%8B/</id>
+    <link href="https://handsomeliuyang.github.io/2021/07/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-Anki%E5%8A%A9%E6%89%8B/"/>
+    <id>https://handsomeliuyang.github.io/2021/07/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-Anki%E5%8A%A9%E6%89%8B/</id>
     <published>2021-07-26T01:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.128Z</updated>
     
@@ -175,8 +200,8 @@
   
   <entry>
     <title>暗黑适配方案比较</title>
-    <link href="https://handsomeliuyang.github.io/2021/05/17/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E6%9A%97%E9%BB%91%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
-    <id>https://handsomeliuyang.github.io/2021/05/17/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E6%9A%97%E9%BB%91%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
+    <link href="https://handsomeliuyang.github.io/2021/05/17/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E6%9A%97%E9%BB%91%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
+    <id>https://handsomeliuyang.github.io/2021/05/17/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E6%9A%97%E9%BB%91%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
     <published>2021-05-16T16:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.133Z</updated>
     
@@ -200,8 +225,8 @@
   
   <entry>
     <title>基于git和markdown的文档平台</title>
-    <link href="https://handsomeliuyang.github.io/2021/05/11/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E5%9F%BA%E4%BA%8Egit%E5%92%8Cmarkdown%E7%9A%84%E6%96%87%E6%A1%A3%E5%B9%B3%E5%8F%B0/"/>
-    <id>https://handsomeliuyang.github.io/2021/05/11/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E5%9F%BA%E4%BA%8Egit%E5%92%8Cmarkdown%E7%9A%84%E6%96%87%E6%A1%A3%E5%B9%B3%E5%8F%B0/</id>
+    <link href="https://handsomeliuyang.github.io/2021/05/11/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E5%9F%BA%E4%BA%8Egit%E5%92%8Cmarkdown%E7%9A%84%E6%96%87%E6%A1%A3%E5%B9%B3%E5%8F%B0/"/>
+    <id>https://handsomeliuyang.github.io/2021/05/11/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E5%9F%BA%E4%BA%8Egit%E5%92%8Cmarkdown%E7%9A%84%E6%96%87%E6%A1%A3%E5%B9%B3%E5%8F%B0/</id>
     <published>2021-05-10T16:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.132Z</updated>
     
@@ -224,8 +249,8 @@
   
   <entry>
     <title>Android端的架构设计的演进和思考</title>
-    <link href="https://handsomeliuyang.github.io/2021/04/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/Android%E7%AB%AF%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%BC%94%E8%BF%9B%E5%92%8C%E6%80%9D%E8%80%83/"/>
-    <id>https://handsomeliuyang.github.io/2021/04/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/Android%E7%AB%AF%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%BC%94%E8%BF%9B%E5%92%8C%E6%80%9D%E8%80%83/</id>
+    <link href="https://handsomeliuyang.github.io/2021/04/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-Android%E7%AB%AF%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%BC%94%E8%BF%9B%E5%92%8C%E6%80%9D%E8%80%83/"/>
+    <id>https://handsomeliuyang.github.io/2021/04/26/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-Android%E7%AB%AF%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%9A%84%E6%BC%94%E8%BF%9B%E5%92%8C%E6%80%9D%E8%80%83/</id>
     <published>2021-04-25T16:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.128Z</updated>
     
@@ -248,8 +273,8 @@
   
   <entry>
     <title>责任链模式两种典型实现</title>
-    <link href="https://handsomeliuyang.github.io/2021/01/20/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%B8%A4%E7%A7%8D%E5%85%B8%E5%9E%8B%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://handsomeliuyang.github.io/2021/01/20/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%B8%A4%E7%A7%8D%E5%85%B8%E5%9E%8B%E5%AE%9E%E7%8E%B0/</id>
+    <link href="https://handsomeliuyang.github.io/2021/01/20/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%B8%A4%E7%A7%8D%E5%85%B8%E5%9E%8B%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://handsomeliuyang.github.io/2021/01/20/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%B8%A4%E7%A7%8D%E5%85%B8%E5%9E%8B%E5%AE%9E%E7%8E%B0/</id>
     <published>2021-01-20T02:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.127Z</updated>
     
@@ -275,8 +300,8 @@
   
   <entry>
     <title>群晖：搭建个人和工作的数据中心</title>
-    <link href="https://handsomeliuyang.github.io/2021/01/03/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/"/>
-    <id>https://handsomeliuyang.github.io/2021/01/03/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/</id>
+    <link href="https://handsomeliuyang.github.io/2021/01/03/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/"/>
+    <id>https://handsomeliuyang.github.io/2021/01/03/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%92%8C%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/</id>
     <published>2021-01-03T07:30:00.000Z</published>
     <updated>2023-10-08T02:53:20.133Z</updated>
     
@@ -300,8 +325,8 @@
   
   <entry>
     <title>StudyDemos的Demo列表的动态配置实现</title>
-    <link href="https://handsomeliuyang.github.io/2020/11/05/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/StudyDemos%E7%9A%84Demo%E5%88%97%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://handsomeliuyang.github.io/2020/11/05/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/StudyDemos%E7%9A%84Demo%E5%88%97%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0/</id>
+    <link href="https://handsomeliuyang.github.io/2020/11/05/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-StudyDemos%E7%9A%84Demo%E5%88%97%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://handsomeliuyang.github.io/2020/11/05/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-StudyDemos%E7%9A%84Demo%E5%88%97%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE%E5%AE%9E%E7%8E%B0/</id>
     <published>2020-11-05T02:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.130Z</updated>
     
@@ -324,8 +349,8 @@
   
   <entry>
     <title>hexo本地静态搜索实现</title>
-    <link href="https://handsomeliuyang.github.io/2020/10/31/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/hexo%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://handsomeliuyang.github.io/2020/10/31/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/hexo%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0/</id>
+    <link href="https://handsomeliuyang.github.io/2020/10/31/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-hexo%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://handsomeliuyang.github.io/2020/10/31/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-hexo%E6%9C%AC%E5%9C%B0%E9%9D%99%E6%80%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E7%8E%B0/</id>
     <published>2020-10-31T04:40:45.000Z</published>
     <updated>2023-10-08T02:53:20.131Z</updated>
     
@@ -348,8 +373,8 @@
   
   <entry>
     <title>VSCode插件开发之Markdown扩展功能</title>
-    <link href="https://handsomeliuyang.github.io/2020/10/24/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/VSCode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B9%8BMarkdown%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
-    <id>https://handsomeliuyang.github.io/2020/10/24/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/VSCode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B9%8BMarkdown%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</id>
+    <link href="https://handsomeliuyang.github.io/2020/10/24/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-VSCode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B9%8BMarkdown%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
+    <id>https://handsomeliuyang.github.io/2020/10/24/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-VSCode%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B9%8BMarkdown%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</id>
     <published>2020-10-23T16:00:00.000Z</published>
     <updated>2023-10-08T02:53:20.130Z</updated>
     
@@ -373,8 +398,8 @@
   
   <entry>
     <title>双开系列：AIDL原理简介及动态扩展实现</title>
-    <link href="https://handsomeliuyang.github.io/2020/08/09/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E5%8F%8C%E5%BC%80%E7%B3%BB%E5%88%97%EF%BC%9AAIDL%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%8A%A8%E6%80%81%E6%89%A9%E5%B1%95%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://handsomeliuyang.github.io/2020/08/09/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E5%8F%8C%E5%BC%80%E7%B3%BB%E5%88%97%EF%BC%9AAIDL%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%8A%A8%E6%80%81%E6%89%A9%E5%B1%95%E5%AE%9E%E7%8E%B0/</id>
+    <link href="https://handsomeliuyang.github.io/2020/08/09/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E5%8F%8C%E5%BC%80%E7%B3%BB%E5%88%97%EF%BC%9AAIDL%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%8A%A8%E6%80%81%E6%89%A9%E5%B1%95%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://handsomeliuyang.github.io/2020/08/09/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E5%8F%8C%E5%BC%80%E7%B3%BB%E5%88%97%EF%BC%9AAIDL%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%8A%A8%E6%80%81%E6%89%A9%E5%B1%95%E5%AE%9E%E7%8E%B0/</id>
     <published>2020-08-09T04:32:34.000Z</published>
     <updated>2023-10-08T02:53:20.132Z</updated>
     
@@ -398,8 +423,8 @@
   
   <entry>
     <title>ARCore实现iOS的AR效果</title>
-    <link href="https://handsomeliuyang.github.io/2020/07/21/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/ARCore%E5%AE%9E%E7%8E%B0iOS%E7%9A%84AR%E6%95%88%E6%9E%9C/"/>
-    <id>https://handsomeliuyang.github.io/2020/07/21/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/ARCore%E5%AE%9E%E7%8E%B0iOS%E7%9A%84AR%E6%95%88%E6%9E%9C/</id>
+    <link href="https://handsomeliuyang.github.io/2020/07/21/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-ARCore%E5%AE%9E%E7%8E%B0iOS%E7%9A%84AR%E6%95%88%E6%9E%9C/"/>
+    <id>https://handsomeliuyang.github.io/2020/07/21/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-ARCore%E5%AE%9E%E7%8E%B0iOS%E7%9A%84AR%E6%95%88%E6%9E%9C/</id>
     <published>2020-07-21T07:35:45.000Z</published>
     <updated>2023-10-08T02:53:20.128Z</updated>
     
@@ -422,8 +447,8 @@
   
   <entry>
     <title>云服务搭建Anki Sync Server</title>
-    <link href="https://handsomeliuyang.github.io/2020/01/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BAAnki-Sync-Server/"/>
-    <id>https://handsomeliuyang.github.io/2020/01/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BAAnki-Sync-Server/</id>
+    <link href="https://handsomeliuyang.github.io/2020/01/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BAAnki-Sync-Server/"/>
+    <id>https://handsomeliuyang.github.io/2020/01/08/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-%E4%BA%91%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BAAnki-Sync-Server/</id>
     <published>2020-01-08T11:53:36.000Z</published>
     <updated>2023-10-08T02:53:20.131Z</updated>
     
@@ -450,8 +475,8 @@
   
   <entry>
     <title>58App/Android端的动态化框架实践与思考</title>
-    <link href="https://handsomeliuyang.github.io/2019/11/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/58App-Android%E7%AB%AF%E7%9A%84%E5%8A%A8%E6%80%81%E5%8C%96%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5%E4%B8%8E%E6%80%9D%E8%80%83/"/>
-    <id>https://handsomeliuyang.github.io/2019/11/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/58App-Android%E7%AB%AF%E7%9A%84%E5%8A%A8%E6%80%81%E5%8C%96%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5%E4%B8%8E%E6%80%9D%E8%80%83/</id>
+    <link href="https://handsomeliuyang.github.io/2019/11/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-58App-Android%E7%AB%AF%E7%9A%84%E5%8A%A8%E6%80%81%E5%8C%96%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5%E4%B8%8E%E6%80%9D%E8%80%83/"/>
+    <id>https://handsomeliuyang.github.io/2019/11/22/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93-58App-Android%E7%AB%AF%E7%9A%84%E5%8A%A8%E6%80%81%E5%8C%96%E6%A1%86%E6%9E%B6%E5%AE%9E%E8%B7%B5%E4%B8%8E%E6%80%9D%E8%80%83/</id>
     <published>2019-11-22T12:16:45.000Z</published>
     <updated>2023-10-08T02:53:20.127Z</updated>
     
@@ -474,8 +499,8 @@
   
   <entry>
     <title>Flutter混合工程工程化编译改造系列：add to app源码分析</title>
-    <link href="https://handsomeliuyang.github.io/2019/10/30/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Flutter%E7%9A%84add-to-app%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    <id>https://handsomeliuyang.github.io/2019/10/30/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/Flutter%E7%9A%84add-to-app%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
+    <link href="https://handsomeliuyang.github.io/2019/10/30/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Flutter%E7%9A%84add-to-app%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <id>https://handsomeliuyang.github.io/2019/10/30/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0-Flutter%E7%9A%84add-to-app%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</id>
     <published>2019-10-30T06:19:59.000Z</published>
     <updated>2023-10-08T02:53:20.123Z</updated>
     
@@ -491,32 +516,6 @@
     
     <category term="日常学习" scheme="https://handsomeliuyang.github.io/categories/%E6%97%A5%E5%B8%B8%E5%AD%A6%E4%B9%A0/"/>
     
-    
-    <category term="Flutter" scheme="https://handsomeliuyang.github.io/tags/Flutter/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PageView滑动进入首页效果</title>
-    <link href="https://handsomeliuyang.github.io/2019/09/18/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/PageView%E6%BB%91%E5%8A%A8%E8%BF%9B%E5%85%A5%E9%A6%96%E9%A1%B5%E6%95%88%E6%9E%9C/"/>
-    <id>https://handsomeliuyang.github.io/2019/09/18/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/PageView%E6%BB%91%E5%8A%A8%E8%BF%9B%E5%85%A5%E9%A6%96%E9%A1%B5%E6%95%88%E6%9E%9C/</id>
-    <published>2019-09-18T01:03:35.000Z</published>
-    <updated>2023-10-08T02:53:20.130Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="实现后的效果"><a href="#实现后的效果" class="headerlink" title="实现后的效果"></a>实现后的效果</h1><iframe height= 520 width= 100% src="screen.mp4" frameborder=0 allowfullscreen></iframe><h1 id="使用PageView"><a href="#使用PageView" class="headerlink" title="使用PageView"></a>使用PageView</h1><p>按官方的文档，PageView的使用非常简单，如下是左右滑动的PageView例子：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PageView.builder(</span><br><span class="line">    scrollDirection: Axis.horizontal,</span><br><span class="line">    itemCount: itemCount,</span><br><span class="line">    itemBuilder: (BuildContext context, <span class="built_in">int</span> index)&#123;</span><br><span class="line">        <span class="keyword">return</span> ...;</span><br><span class="line">    &#125;,</span><br><span class="line">    onPageChanged: (<span class="built_in">int</span> index)&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>通过PageView的源码可得知：</p><ol><li>PageView是一个StatefulWidget</li><li>PageView是基于Scrollable来实现的</li></ol><p>Flutter与Android的事件类型基本一致，都是down, move, up。但基包装处理类完全不一样。</p><h1 id="Android实现实现此效果的方式"><a href="#Android实现实现此效果的方式" class="headerlink" title="Android实现实现此效果的方式"></a>Android实现实现此效果的方式</h1><p>在Android里，实现对fling的拦截处理的方式是：使用GestureDetector，如下所示：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FlingableRelativeLayout</span> <span class="keyword">extends</span> <span class="title class_">RelativeLayout</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">float</span> <span class="variable">FLING_MIN_DISTANCE</span> <span class="operator">=</span> <span class="number">25</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">float</span> <span class="variable">FLING_MIN_VELOCITY</span> <span class="operator">=</span> <span class="number">800</span>;</span><br><span class="line">    <span class="keyword">private</span> GestureDetector mGestureDetector;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="type">SimpleOnGestureListener</span> <span class="variable">mOnGestureListener</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleOnGestureListener</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onFling</span><span class="params">(MotionEvent e1, MotionEvent e2, <span class="type">float</span> velocityX, <span class="type">float</span> velocityY)</span> &#123;</span><br><span class="line">            <span class="type">float</span> <span class="variable">distance</span> <span class="operator">=</span> e2.getX() - e1.getX();</span><br><span class="line">            <span class="keyword">if</span>(Math.abs(velocityX) &gt; FLING_MIN_VELOCITY) &#123;</span><br><span class="line">                <span class="keyword">if</span>(distance &gt; FLING_MIN_DISTANCE) &#123;</span><br><span class="line">                    <span class="comment">// 向右fling</span></span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (distance &lt; -<span class="number">1</span> * FLING_MIN_DISTANCE) &#123;</span><br><span class="line">                    <span class="comment">// 向左fling</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">FlingableRelativeLayout</span><span class="params">(Context context, AttributeSet attributeSet, <span class="type">int</span> defStyle)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>(context, attributeSet, defStyle);</span><br><span class="line">        mGestureDetector = <span class="keyword">new</span> <span class="title class_">GestureDetector</span>(getContext(), mOnGestureListener);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> &#123;</span><br><span class="line">        mGestureDetector.onTouchEvent(ev);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">onTouchEvent</span><span class="params">(MotionEvent event)</span> &#123;</span><br><span class="line">        mGestureDetector.onTouchEvent(event);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="Flutter的PageView拦截对应事件"><a href="#Flutter的PageView拦截对应事件" class="headerlink" title="Flutter的PageView拦截对应事件"></a>Flutter的PageView拦截对应事件</h1><p>通过对PageView的源码分析发现，Scrollable对事件处理后，通过ScrollPhysics physics属性，对外暴露如下能力：</p><ol><li>滑动到min和max的时机</li><li>事件up的时机</li></ol><p>PageView通过自定义ScrollPhysics来实现up后，smoothscroll到合适的page页面，如下所示：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageScrollPhysics</span> <span class="keyword">extends</span> <span class="title">ScrollPhysics</span> </span>&#123;</span><br><span class="line">    <span class="comment">/// <span class="language-markdown">Creates physics for a [PageView].</span></span></span><br><span class="line">    <span class="keyword">const</span> PageScrollPhysics(&#123; ScrollPhysics parent &#125;) : <span class="keyword">super</span>(parent: parent);</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    PageScrollPhysics applyTo(ScrollPhysics ancestor) &#123;</span><br><span class="line">        <span class="keyword">return</span> PageScrollPhysics(parent: buildParent(ancestor));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    Simulation createBallisticSimulation(ScrollMetrics position, <span class="built_in">double</span> velocity) &#123;</span><br><span class="line">        <span class="comment">// If we&#x27;re out of range and not headed back in range, defer to the parent</span></span><br><span class="line">        <span class="comment">// ballistics, which should put us back in range at a page boundary.</span></span><br><span class="line">        <span class="keyword">if</span> ((velocity &lt;= <span class="number">0.0</span> &amp;&amp; position.pixels &lt;= position.minScrollExtent) ||</span><br><span class="line">        (velocity &gt;= <span class="number">0.0</span> &amp;&amp; position.pixels &gt;= position.maxScrollExtent)) &#123;</span><br><span class="line">            <span class="comment">// 滑动到min或max了，显示阴影效果</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.createBallisticSimulation(position, velocity);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// event up后，scroll到合适的page</span></span><br><span class="line">        <span class="keyword">final</span> Tolerance tolerance = <span class="keyword">this</span>.tolerance;</span><br><span class="line">        <span class="keyword">final</span> <span class="built_in">double</span> target = _getTargetPixels(position, tolerance, velocity);</span><br><span class="line">        <span class="keyword">if</span> (target != position.pixels)</span><br><span class="line">            <span class="keyword">return</span> ScrollSpringSimulation(spring, position.pixels, target, velocity, tolerance: tolerance);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    <span class="built_in">bool</span> <span class="keyword">get</span> allowImplicitScrolling =&gt; <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>PageView通过重写createBallisticSimulation()方法，实现回到合适的page与阴影效果</p><h1 id="实现滑动到Max后，继续滑动进入首页效果"><a href="#实现滑动到Max后，继续滑动进入首页效果" class="headerlink" title="实现滑动到Max后，继续滑动进入首页效果"></a>实现滑动到Max后，继续滑动进入首页效果</h1><p>在PageView的PageScrollPhysics基础上，重新createBallisticSimulation()方法，拦截max后的滑动：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LeadingPageScrollPhysics</span> <span class="keyword">extends</span> <span class="title">PageScrollPhysics</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> LeadingPageScrollPhysics(&#123; ScrollPhysics parent &#125;) : <span class="keyword">super</span>(parent: parent);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    PageScrollPhysics applyTo(ScrollPhysics ancestor) &#123;</span><br><span class="line">        <span class="keyword">return</span> LeadingPageScrollPhysics(parent: ancestor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@override</span></span><br><span class="line">    Simulation createBallisticSimulation(ScrollMetrics position,</span><br><span class="line">        <span class="built_in">double</span> velocity) &#123;</span><br><span class="line">        <span class="comment">// 最后向左滑动</span></span><br><span class="line">        <span class="keyword">if</span> (velocity &gt; <span class="number">0.0</span> &amp;&amp; position.pixels &gt;= position.maxScrollExtent) &#123;</span><br><span class="line">            debugPrint(<span class="string">&#x27;createBallisticSimulation has left&#x27;</span>);</span><br><span class="line">            navigatorKey.currentState.pushReplacementNamed(<span class="string">&#x27;/home&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.createBallisticSimulation(position, velocity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再配置PageView的physics属性，如下所示：</p><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PageView.builder(</span><br><span class="line">    physics: LeadingPageScrollPhysics(),</span><br><span class="line">    scrollDirection: Axis.horizontal,</span><br><span class="line">    itemCount: itemCount,</span><br><span class="line">    itemBuilder: (BuildContext context, <span class="built_in">int</span> index)&#123;</span><br><span class="line">        <span class="keyword">return</span> ...;</span><br><span class="line">    &#125;,</span><br><span class="line">    onPageChanged: (<span class="built_in">int</span> index)&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;实现后的效果&quot;&gt;&lt;a href=&quot;#实现后的效果&quot; class=&quot;headerlink&quot; title=&quot;实现后的效果&quot;&gt;&lt;/a&gt;实现后的效果&lt;/h1&gt;&lt;iframe height= 520 width= 100% src=&quot;screen.mp4&quot; framebor</summary>
-      
-    
-    
-    
-    <category term="经验总结" scheme="https://handsomeliuyang.github.io/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
-    
-    
-    <category term="Android" scheme="https://handsomeliuyang.github.io/tags/Android/"/>
     
     <category term="Flutter" scheme="https://handsomeliuyang.github.io/tags/Flutter/"/>
     
